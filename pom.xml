@@ -21,6 +21,16 @@
     <developerConnection>scm:git:git@github.com:talkylabs/reach-java.git</developerConnection>
     <tag>v1.0.0</tag>
   </scm>
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id><!-- Server config in settings.xml -->
+      <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id><!-- Server config in settings.xml -->
+      <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
   <developers>
     <developer>
       <id>api</id>
