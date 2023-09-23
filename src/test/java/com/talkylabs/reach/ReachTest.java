@@ -14,7 +14,6 @@ import org.mockito.MockitoAnnotations;
 
 import com.talkylabs.reach.exception.ApiException;
 import com.talkylabs.reach.exception.AuthenticationException;
-import com.talkylabs.reach.exception.CertificateValidationException;
 import com.talkylabs.reach.http.HttpMethod;
 import com.talkylabs.reach.http.NetworkHttpClient;
 import com.talkylabs.reach.http.Request;
@@ -129,36 +128,5 @@ public class ReachTest {
         Assertions.assertEquals(reachRestClient, Reach.getRestClient());
     }
 
-    @Test
-    public void testValidateSslCertificateError() {
-        final Request request = new Request(HttpMethod.GET, "https://api.reach.talkylabs.com:8443");
-        when(networkHttpClient.makeRequest(request)).thenReturn(new Response("", 500));
-        try {
-        	Reach.validateSslCertificate(networkHttpClient);
-        	Assertions.fail("Excepted CertificateValidationException");
-        } catch (final CertificateValidationException e) {
-        	Assertions.assertEquals("Unexpected response from certificate endpoint", e.getMessage());
-        }
-    }
-
-    @Test
-    public void testValidateSslCertificateException() {
-        final Request request = new Request(HttpMethod.GET, "https://api.reach.talkylabs.com:8443");
-        when(networkHttpClient.makeRequest(request)).thenThrow(new ApiException("No"));
-
-        try {
-        	Reach.validateSslCertificate(networkHttpClient);
-        	Assertions.fail("Excepted CertificateValidationException");
-        } catch (final CertificateValidationException e) {
-        	Assertions.assertEquals("Could not get response from certificate endpoint", e.getMessage());
-        }
-    }
-
-    @Test
-    public void testValidateSslCertificateSuccess() {
-        final Request request = new Request(HttpMethod.GET, "https://api.reach.talkylabs.com:8443");
-        when(networkHttpClient.makeRequest(request)).thenReturn(new Response("", 200));
-
-        Reach.validateSslCertificate(networkHttpClient);
-    }
+    
 }

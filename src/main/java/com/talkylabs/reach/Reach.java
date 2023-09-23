@@ -8,7 +8,6 @@ import java.util.concurrent.Executors;
 
 import com.talkylabs.reach.exception.ApiException;
 import com.talkylabs.reach.exception.AuthenticationException;
-import com.talkylabs.reach.exception.CertificateValidationException;
 import com.talkylabs.reach.http.HttpMethod;
 import com.talkylabs.reach.http.NetworkHttpClient;
 import com.talkylabs.reach.http.ReachRestClient;
